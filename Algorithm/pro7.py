@@ -1,7 +1,7 @@
 from collections import deque
 T = int(input())
 
-for test_case in range(1, T + 1):
+for test_case in range(1, T+1):
     # ///////////////////////////////////////////////////////////////////////////////////
     queue =deque()
     N, K = input().split()
@@ -59,5 +59,5 @@ for test_case in range(1, T + 1):
 
 
     list_sum2 = sorted(set(list_sum),reverse=True)
-    print("#",test_case,"\t",list_sum2[K-1])
-
+    print('#'+str(test_case),list_sum2[K-1])
+## 숫자하고 문자하고 ,로 연결하면 알아서 공백이 생긴다 ! 주의하자
