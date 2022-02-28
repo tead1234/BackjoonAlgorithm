@@ -19,6 +19,7 @@ def solution(n, times):
     return min(answer_list)
 
 
+## 오류 해결용 커밋
 
 
 
