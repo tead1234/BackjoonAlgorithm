@@ -1,30 +1,25 @@
 def solution(n, times):
-    ## n명이 줄을 서있을떄 가장 시간이 적게 걸리는 곳을 탐색한후 가면 되겠네
-    ## 각 줄마다 걸리는 시간 - 경과시간  = 대기 시간 대기시간이랑 검사걸리는 시간을 더하면 걸리는 시간을 알 수있음
-    # answer는 경과 시간
-    answer = 0
-    n = n - len(times)
-    wait = [0] * len(times)
-    save_times = times.copy()
-    while n != 0:
-        answer += 1
 
-        for i in range(len(times)):
+    mid =  1e18
+    answer_list = []
+    first = 0
+    last = 1e18
+    #어떻게 하면 중복될떄를 방지할 수 있을까??
+    ## 통과한 사람수가 n보다 많은 경우만 카운트 한다음 그중에 가장 작은 mid를 찾으면 되겠네!!!
+    ## 범위가 중요하구나
+    while last > first:
+        mid = (first + last) // 2
+        complete = sum(mid // time for time in times)
+        if complete >= n:
+            last = mid
+            answer_list.append(mid)
+        if complete < n:
+            first = mid + 1
 
-            wait[i] = times[i] - answer
-        for i in range(len(times)):
-            if wait[i] == 0:
-                times[i] += times[i]
-                n -= 1
-        if n == 1:
-            for n,m in enumerate(wait):
-                if m == 0:
-                    answer += save_times[n]
-            least = wait[0] + times[0]
-            for k in range(len(times)):
-                if wait[k] + times[k] <= least:
-                    least = wait[k] + save_times[k]
-            answer += least
-            return answer
+    return min(answer_list)
 
-print(solution(6,[7,10,10,30]))
+
+
+
+
+print(solution(6,[10,10]))
