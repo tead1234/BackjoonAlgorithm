@@ -18,34 +18,39 @@ def Brw(start,coniPlace):
     for i in range(2,1000001):
         if coniPlace >= d[i-1] + 1:
             d[i] = d[i - 1] + 1
-            if d[i] == coniPlace:
-                return d[i]
+
             if coniPlace >= d[i-1] * 2:
                 d[i] = d[i-1] * 2
-                if d[i] == coniPlace:
-                    return d[i]
-        else:
+
+        if d[i-1] > coniPlace:
             d[i] = d[i-1] - 1
-            if d[i] == coniPlace:
-                return d[i]
+
+        if d[i] == coniPlace:
+            return i
     return False
-
-def solution(start, end, placeConi, placeBrw):
-    mid = (start + end) // 2
+## mid시간을 찍어서 코니의 위치를 파악한후 브라운이 그 시간동안 도달할 수 씨는 최소 mid를 찾으면된다
+def solution(start, placeConi, placeBrw):
+    end =
     while(True):
-        pros = Coni(mid,placeConi)
-
-        if Brw(placeBrw,pros) == mid:
+        mid = (start + end) // 2
+        pros = Coni(mid,placeConi) ## pros 코니가 주어진 mid에 가있는 거리
+        ## 만약 코니가 300000이상으로 가있으면 mid를 줄여야됨
+        if pros > 300000:
+            end = mid -1
+            solution(start,end,placeConi,placeBrw)
+        elif Brw(placeBrw,pros) == mid:
             return mid
         ## 브라운 위치 찾기 mid시간에
 
-        if Brw(placeBrw,pros) < mid:
-            solution(start, mid-1,placeConi, placeBrw)
+        elif Brw(placeBrw,pros) < mid:
+            end = mid-1
+            solution(start, end,placeConi, placeBrw)
 
-        if Brw(placeBrw,pros) > mid:
-            solution(mid + 1, end, placeConi, placeBrw)
+        elif Brw(placeBrw,pros) > mid:
+            start = mid +1
+            solution(start, end, placeConi, placeBrw)
 
-        if Brw(placeBrw,pros) == False:
+        elif Brw(placeBrw,pros) == False:
             return -1
 
 
@@ -53,5 +58,5 @@ def solution(start, end, placeConi, placeBrw):
 placeConi= int(input("코니"))
 placeBrown = int(input("브라운"))
 
-
+print(Brw(4,299927))
 print(solution(0,2000,placeConi,placeBrown))
