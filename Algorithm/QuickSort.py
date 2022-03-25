@@ -27,4 +27,6 @@ def reverseQuick(arr):
 
     return reverseQuick(left) + [pivot] + reverseQuick(right)
 
+
+
 print(reverseQuick(num_arr))
