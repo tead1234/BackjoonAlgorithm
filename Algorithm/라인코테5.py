@@ -2,7 +2,7 @@ from collections import deque
 짝수행렬 = []
 홀수행렬 = []
 
-arr = [7,6,8,9,10]
+arr = [7,6,8,9,10,3000,5151]
     ##[2,8,3,6,1,9,1,9]
 k =0
 def solution(arr, k):
@@ -56,11 +56,11 @@ def solution(arr, k):
                 나머지행렬.append(나머지)
         나머지행렬 = sorted(나머지행렬, reverse= False)
         if len(나머지행렬) > k:
-            for k in range(k):
+            for _ in range(k):
                 # print(나머지행렬.pop())
                 answer += 나머지행렬.pop()
         else:
-            for k in range(len(나머지행렬)):
+            for _ in range(len(나머지행렬)):
                 # print(나머지행렬.pop())
                 answer += 나머지행렬.pop()
             ## 올림차순정렬
