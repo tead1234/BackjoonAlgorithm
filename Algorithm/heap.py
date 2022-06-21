@@ -1,6 +1,6 @@
 from collections import deque
 import heapq
-## 야발 최소 작업길이 그다음 최소 대기 시간 이렇게 해봐야 하나
+## 야발 최소 작업길이 그다음 최소 대기 시간 이렇게 해봐야 하나\
 def solution(jobs):
     총시간 = 0
     총작업시간 = 0
