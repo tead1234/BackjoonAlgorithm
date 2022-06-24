@@ -1,3 +1,3 @@
-# Auto_file_Sorting
-잡동사니 폴더를 확장자를 기준으로 폴더를 생성후 분류해줍니다.
-exe 파일 있으니 파이썬이 없으면 이걸 실행해서 쓰세요
+# BackjoonAlgorithm
+알고리즘 연구
+Dd
