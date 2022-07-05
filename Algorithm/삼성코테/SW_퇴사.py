@@ -32,6 +32,8 @@ a = 0
 input_list = [list(map(int, input().split())) for _ in range(N)]
 
 while True:
+    if N == 0:
+        break
     a += 1
     i = find_max(input_list)
     date = input_list[i][0]
@@ -42,7 +44,7 @@ while True:
         input_list[i] = [-1, -1]
     elif valid(i,date,checked, N) == False:
         input_list[i] = [-1, -1]
-    if a > N:
+    if a >= N:
         break
 
 print(answer)
