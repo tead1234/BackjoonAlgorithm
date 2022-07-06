@@ -6,25 +6,27 @@
 
 N = int(input())
 ## 그래프 입력받기
+K = N//2
 graph = [list(map(int,input().split())) for _ in range(N)]
-graph2 = [[0]*N for _ in range(N)]
 ## 2차원배열이 시계방향으로 움직이는건 0,0 => 0,1 90도 회전은 변경전 열이 변경후 행으로 변경전 N-1 - 변경전 행 == 변경후 열
 
-def turn_90(배열):
-    for i in range(N):
-        for j in range(N):
-            ## 시계 반대방향 회전
-            ## 시계방향 회전이면 0,0 => 2,0 0,1>>2,1  1,0 => 0,1 2,0 = 0,0 2,1 >> 1,0 1,2 = 2, 1
-
-            graph2[j][N-1-i] = graph[i][j]
+def turn_90(graph):
+    graph2 = graph.copy()
+    for i in range(len(graph)):
+        for j in range(len(graph)):
+            graph2[j][len(graph)-1-i] = graph[i][j]
     return graph2
-def copy(바꾸는배열, 바뀌는배열):
-    for i in range(len(바꾸는배열)):
-        for j in range(len(바꾸는배열)):
-            바뀌는배열[i][j] = 바꾸는배열[i][j]
-    return 바뀌는배열
+
+def slice_list(startX,startY, endX,endY, graph):
+    # 행이랑 동시에 슬라이싱이 안되네
+    graph2 = []
+    graph = graph[startX:startY+1]
+    for i in range(0, endY- endX+1):
+        graph2.append(graph[i][endX:endY+1])
+    return  graph2
+
 
 ## N이
-
-print(copy(turn_90(graph),graph))
+print(slice_list(0,0,1,1,graph))
+# print(turn_90())
 
