@@ -33,6 +33,8 @@ def solution(n, results):
             elif j == n-2:
                 answer += 1
                 results_final[n-1] = n+1
+
+
     print(results_final)
     return answer
 
