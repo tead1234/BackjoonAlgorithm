@@ -5,7 +5,7 @@ max_val  = sorted(listD, reverse=True)[0]
 res = 0
 first = 0
 last = max_val
-while True:
+while last > first:
     mid = (first + last)//2
     res = 0
     for a in listD:
