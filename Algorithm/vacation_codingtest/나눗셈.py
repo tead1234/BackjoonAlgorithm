@@ -15,6 +15,4 @@ for i in range(3, N+1):
     li.append((d[i-1]+ 1))
     d[i] = min(li)
     li = []
-
-
 print(d)
