@@ -3,7 +3,6 @@ def solution(scoville, K):
     mini = min(scoville)
     if mini >= K:
         answer = 0
-
     while mini < K and len(scoville) != 1:
         a = mini
         scoville.remove(a)
