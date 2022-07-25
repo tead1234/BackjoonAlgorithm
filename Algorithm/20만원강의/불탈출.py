@@ -33,17 +33,16 @@ def bfs(start, visited):
         return
     while q:
         x, y = q.popleft()
+        if n > x >= 0 and m > y >= 0:
+            if x == n - 1 or x == 0 or y == m - 1 or y == 0:
+                if g[x][y] == ".":
+                    ans = visited[x][y]
+                    return
         dx = [-1, 0, 1, 0]
         dy = [0, -1, 0, 1]
         for k in range(4):
             X = dx[k] + x
             Y = dy[k] + y
-            if n>X>=0 and m>Y>=0 :
-                if X == n-1 or X == 0 or Y == m-1 or Y == 0:
-                    if g[X][Y] == ".":
-                        if fire[X][Y] > visited[x][y] + 1:
-                            ans = visited[x][y] + 1
-                            return
             if n>X>=0 and m>Y>=0 and g[X][Y] == "." and fire[X][Y] > visited[x][y] and visited[X][Y] == 0:
                 q.append((X, Y))
                 visited[X][Y] = visited[x][y] + 1
