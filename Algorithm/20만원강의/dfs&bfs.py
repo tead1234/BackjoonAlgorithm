@@ -6,7 +6,8 @@ for _ in range(l):
 	s,e = map(int,input().split())
 	List[s].append(e)
 	List[e].append(s)
-List = list(list(sorted(set(a))) for a in List)
+List = [list(sorted(set(a))) for a in List]
+print(List)
 visited = [False] * n
 visited2 = [False] * n
 ans = []
@@ -32,7 +33,7 @@ def bfs(x):
 		else:
 			visited2[X-1] = True
 			for a in List[X]:
-				if a in q or a in ans2:
+				if a in q or visited2[a-1] == True:
 					continue
 				else:
 					q.append(a)
