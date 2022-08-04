@@ -25,7 +25,8 @@ def dfs(x,d):
             if visited[a] == False:
                 dfs(a,d+b)
                 visited[a] = False
-
+    ## 위의 for 함수를 다 거치고 나면 꺼줘야됨
+    return
 
 dfs(1,0)
 print(min(val))
