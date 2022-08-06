@@ -11,21 +11,27 @@ def dfs(z, 갯수, p):
     ## 리터, 칼로리_ 갯수
     a, b, a1 = z
     if p <= 0:
+
         ans.append(mx_ans)
         return
     else:
-        p -= a
-        갯수[a1] -= 1
-        mx_ans += b
+        # p -= a
+        # 갯수[a1] -= 1
+        # mx_ans += b
         ## 중복해도 되니깐 true체크할 필요가 없음
         for li in 리터_칼로리_번호:
             c, d, e = li
             if 갯수[e] <= 0:
                 continue
             if 갯수[e] > 0 and p > 0:
+                갯수[e] = 갯수[e] - 1
+                mx_ans += d
                 dfs(li, 갯수, p -c)
-            갯수[e] = 갯수[e] + 1
-            mx_ans -= d
+                mx_ans -= d
+                갯수[e] = 갯수[e] + 1
+
+            # 갯수[e] = 갯수[e] + 1
+            # mx_ans -= d
 
     return
 
@@ -43,10 +49,16 @@ def solution(list, p):
         갯수.append(a)
         리터_칼로리_번호.append((b, c, i))
     for z in 리터_칼로리_번호:
+        a,b , a1 = z
+        p -= a
+        갯수[a1] -= 1
+        mx_ans += b
         dfs(z, 갯수, p)
+        p += a
+        갯수[a1] += 1
         mx_ans = 0
     return max(ans)
 
 # 15 , 2리터 남음 1 16 + 9999
 # 5 + 4 +
-print(solution([[1, 3, 5], [5, 1, 2], [1, 1, 1], [3, 2, 2], [10, 10, 9999]], 10))
+print(solution([[1, 3, 5], [5, 1, 2], [1, 1, 1]], 4))
