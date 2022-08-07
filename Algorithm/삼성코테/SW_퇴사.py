@@ -1,50 +1,38 @@
-def valid(i,date,checked,N):
-    ## 주어진 키값부터 date를 더한값이 N이하여야하고 checked의 범위안에도 False여야함
-    if (i+date) > N:
-        return False
-    elif True in checked[i:i+date]:
-        return False
-    return True
-
-def find_max(list):
-    max = 0
-    max_date = 0
-    key = 0
-    for i in range(len(list)):
-        date, val  = list[i]
-        if val > max:
-            max = val
-            max_date = date
-            key = i
-        elif val == max:
-            if max_date > date:
-                max_date = date
-                key = i
-    return key
+n = int(input())
+List = [list(map(int,input().split())) for _ in range(n)]
+ans = 0
+ansList = []
+vis = [False] * n
 
 
-N = int(input())
 
-answer = 0
-checked = [False] * N
-i = 0
-a = 0
-input_list = [list(map(int, input().split())) for _ in range(N)]
+def dfs(x,d):
+    global ans
+    if d > n:
+        return
+    else:
+        ## 다음 탐색을 정할때 방문하지 않았던 애들만 탐색
+        ## num 이하인 애들은 탐색 불가
 
-while True:
-    if N == 0:
-        break
-    a += 1
-    i = find_max(input_list)
-    date = input_list[i][0]
-    if valid(i,date,checked, N):
-        for k in range(i,i+date):
-            checked[k] = True
-        answer += input_list[i][1]
-        input_list[i] = [-1, -1]
-    elif valid(i,date,checked, N) == False:
-        input_list[i] = [-1, -1]
-    if a >= N:
-        break
-
-print(answer)
+        for next in List:
+            time, wage,num = next
+            if  d > num:
+                continue
+            else:
+                ans += wage
+                dfs(next,num+1+time)
+                ans -= wage
+        ansList.append(ans)
+    return
+for i,a in enumerate(List):
+    a.append(i)
+for a in List:
+    ## 첫번째 일정부터 쭉 넣어서 계산 이떄 넣고 다시 마지막 백트래킹을 해줘야닿ㅁ
+    ## 이런구조로짜면 처음 넣는 값은 여기서 처리해 줘야 될거임
+    ## 깊이를 넣어야 되겠음
+    ## 걸리는 시간, 임금, 숫자
+    t,w,m = a
+    ans += w
+    dfs(a,t+m+1)
+    ans -= w
+print(max(ansList))
