@@ -8,17 +8,15 @@ g = [list(input()) for _ in range(n)]
 vis_g = [[0] * m for _ in range(n)]
 flag = False
 dist = [[0] * m for _ in range(n)]
-
+L= []
 def find(x):
 	global dist
 	ans = 0
-	Q = deque()
-	Q.append(x)
-	c,d = Q.popleft()
-	dist[c][d] = 0
-	Q.append((c,d))
+	Q = deque(x)
+
 	while Q:
 		a,b = Q.popleft()
+
 		dx = [-1, 0, 1, 0]
 		dy = [0, -1, 0, 1]
 		for k in range(4):
@@ -28,10 +26,11 @@ def find(x):
 						dist[dx[k] + a][dy[k] + b] = dist[a][b] + 1
 						Q.append((dx[k] + a,dy[k] + b))
 				elif g[dx[k] + a][dy[k] + b] == 'X':
-					ans = dist[a][b] + 1
-					print(ans)
-					break
-		break
+					ans = dist[a][b]
+					return ans
+
+
+
 
 
 def paint(x):
@@ -59,7 +58,9 @@ for i in range(n):
 for I in range(n):
 	for J in range(m):
 		if g[I][J] == 'o':
-			find((I,J))
+			L.append((I,J))
+
+print(find(L))
 
 
 
