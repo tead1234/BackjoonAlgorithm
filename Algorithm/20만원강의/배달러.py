@@ -1,3 +1,4 @@
+## 이걸 n시간내에 풀어야 되는데[
 def solution(order):
     answer = 0
     container = [0]
@@ -7,6 +8,7 @@ def solution(order):
     for i in range(1, len(order) + 1):
         stock.append(i)
     ## o는 무조건 넣어야 되는 물건
+    ## stock에 있는지 찾아보고 없으면
     for ord in order:
         if stock[key] == ord:
             answer += 1
