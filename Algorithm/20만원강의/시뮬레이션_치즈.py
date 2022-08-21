@@ -42,16 +42,18 @@ def clear():
                     if n > dx[k] + i >= 0 and m > dy[k] + j >= 0:
                         if g[dx[k] + i][dy[k] + j] == 3:
                             cnt += 1
+
                 if cnt >= 2:
                     g[i][j] = 2
                     flag = True
+                    cnt = 0
+                else:
                     cnt = 0
     if flag:
         for i in range(n):
             for j in range(m):
                 if g[i][j] == 2:
                     g[i][j] = 3
-        print(g)
         flag = False
         ans += 1
         clear()
