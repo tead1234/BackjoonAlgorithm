@@ -21,13 +21,14 @@ for test_case in range(1, T + 1):
     dir_L = [0,3,2,1]
     ## now는 현재 방향
     k_index = 0
-    ## dir key
+    ## dir
     k = 0
     ## 만약에 L이 나오면 dir_L의 값을 더함
     ## k값을 공유하면서 명령이 나올때 마다 각 방향별 k+1 의 방향을 가져와야됨
     ## 숫자로 방향구하기
     ## 좌회전 우회전을 어떻게 평가할 것인가???
     loc = [0,0]
+    dasd= []
     while q:
         x = q.popleft()
         if x == 'S':
