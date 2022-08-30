@@ -19,6 +19,7 @@ for test_case in range(1, T + 1):
     ## 각 방향
     dir_R = [0,1,2,3]
     dir_L = [0,3,2,1]
+    ans = 0
     ## now는 현재 방향
     k_index = 0
     ## dir
@@ -27,29 +28,34 @@ for test_case in range(1, T + 1):
     ## k값을 공유하면서 명령이 나올때 마다 각 방향별 k+1 의 방향을 가져와야됨
     ## 숫자로 방향구하기
     ## 좌회전 우회전을 어떻게 평가할 것인가???
+    ### 한 명령을 수행하고 나서 다음 명령을 수행했을때 거리가 더 벌어지면 oo
+    ## 명멸한번을 수행하고 거리가 0이면 끝
     loc = [0,0]
-    dasd= []
     while q:
         x = q.popleft()
         if x == 'S':
-            if k + 1 < 4:
-                loc[0] += dir[k][0]
-                loc[1] += dir[k][1]
-
-            elif k+1 >=4:
-                loc[0] += dir[k][0]
-                loc[1] += dir[k][1]
-
+            loc[0] += dir[k_index][0]
+            loc[1] += dir[k_index][1]
             ## 거리계싼싼
-        if x = 'L':
+            ans = (loc[0] * loc[0]) + (loc[1]+loc[1])
+            print(ans)
+        if x == 'L':
+            k = dir_L.index(k_index)
             if k + 1 < 4:
-                ## k의값을 가진 dir_L의 인덱스를 찾아서 그 다음 인덱스로 바ㅜ꺼야됨
                 k  += 1
-                k_index = dir_L.index(k)
+                k_index = dir_L[k]
 
             elif k+1 >=4:
                 k = (k+1) % 4
-                loc[0] += dir[dir_L[k]][0]
-                loc[1] += dir[dir_L[k]][1]
+                k_index = dir_L[k]
+        ## 왼쪽만 도는건 됐는데
+        if x == 'R':
+            k = dir_R.index(k_index)
+            if k+1 < 4:
+                k+= 1
+                k_index = dir_R[k]
+            elif k + 1 > 4:
+                k = (k+1)%4
+                k_index= dir_R[k]
 
     print(loc)
