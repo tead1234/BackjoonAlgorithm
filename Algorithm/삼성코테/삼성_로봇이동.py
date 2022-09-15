@@ -20,6 +20,7 @@ for test_case in range(1, T + 1):
     MAXans = []
     ## now는 현재 방향
     k_index = 0
+    ####
     ## dir
     k = 0
     cnt = 0
