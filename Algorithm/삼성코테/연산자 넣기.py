@@ -1,3 +1,4 @@
+
 def dfs(start,last, cal):
     global ans
     ## 후보 선택할떄 가능한 애들 다 선정
@@ -13,15 +14,17 @@ def dfs(start,last, cal):
         ans = S * L
     elif cal == 3:
         if S >= 0 :
-            if L < 0:
-                ans = S // abs(L) * -1
-            else:
-                ans = S //L
+            ans = S // L
+            # if L < 0:
+            #     ans = S // abs(L) * -1
+            # else:
+            #     ans = S //L
         else:
-            if L < 0:
-                ans = abs(S) // abs(L)
-            else:
-                ans = abs(S) //L
+            ans = (abs(S) // L) * -1
+            # if L < 0:
+            #     ans = abs(S) // abs(L)
+            # else:
+            #     ans = S //L
     for k in range(4):
         # 선택가능하고
         if calculateCopy[k] > 0:
