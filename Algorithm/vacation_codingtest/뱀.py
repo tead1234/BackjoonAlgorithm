@@ -60,6 +60,8 @@ while True:
         snake.append((nx,ny))
         if g[nx][ny] != 9:
             snake.popleft()
+        elif g[nx][ny] == 9:
+            g[nx][ny] = 0
     else:
         break
 
