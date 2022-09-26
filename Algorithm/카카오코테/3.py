@@ -34,18 +34,22 @@ def solution(users, emoticons):
                 if m[k] >= rate:
                     v = (emoticons[k] // 100) * (100 -m[k])
                     total += v
+
             if total > val:
+
                 TOTAL += 1
                 total = 0
+
             else:
                 nopre += total
                 total = 0
-
+                if nopre == 14000:
+                    print(m)
 
         answer.append([TOTAL,nopre])
         TOTAL = 0
         nopre = 0
-
+    print(answer)
 
     return max(answer)
 print(solution(
