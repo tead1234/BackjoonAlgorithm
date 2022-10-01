@@ -30,7 +30,6 @@ def solution(n, edge):
                     if visited[g] == 0:
                         q.append((g, depth + 1))
 
-    # bfs돌려서 최단거리 탐색하면될듯?
 
     for i in range(2, n + 1):
         bfs(i)

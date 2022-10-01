@@ -1,11 +1,7 @@
 import heapq
 import copy
 
-## 다익스트라인데
-## 각 노드에서 가장 시간이 짧게 걸리는 애들만 우선순위로 가면 되징낳나?
-## 정상에서 최소값을 가진애들만 가면되겠네
-## 각 정상마다 한번씩 다돌려야됨
-## 걍 dfs인듯
+
 def solution(n, paths, gates, summits):
     answer = []
     gates = set(gates)
