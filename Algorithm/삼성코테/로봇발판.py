@@ -35,20 +35,6 @@ while num < k:
                 onRobot[i+1] -= 1
             if i == n-2 and robotList[i+1] == 1:
                 robotList[i+1] = 0
-    #
-    # for j in range(n):
-    #     ## 만약에 움직이지 않은 경우라면 그떄도 발판이 사라짐
-    #     ## 움직이지 않았다를 어떻게 판별하지?
-    #     if j == n-1 and robotList[j] == 1:
-    #         if onRobot[j] >0:
-    #             robotList[j] = 0
-    #             onRobot[j] -= 1
-    #         else:
-    #             robotList[j] = 0
-    #     elif robotList[j] == 1 and j != n-1:
-    #         if onRobot[j+1] != 0:
-    #             if onRobot[j] >=1:
-    #                 onRobot[j] -= 1
 
     for x in onRobot:
         if x == 0:
