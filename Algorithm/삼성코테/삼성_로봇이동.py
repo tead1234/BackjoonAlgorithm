@@ -1,15 +1,13 @@
 
 
 from collections import deque
-import sys
 
-sys.stdin = open("sample_input.txt", "r")
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
     # s가 나올때마다 길이 측정후 길이가 꺾이면 그떄까 최고 길이
-    s = sys.stdin.readline().rstrip("\n")
+    s = input()
     q= deque(s)
 
     dir = [[0,1],[1,0],[0,-1],[-1,0]]
@@ -26,7 +24,7 @@ for test_case in range(1, T + 1):
     cnt = 0
 
     loc = [0,0]
-    MAXofTurn = -1
+    MAXofTurn = 0
     while q:
         x = q.popleft()
         if x == 'S':
@@ -50,14 +48,18 @@ for test_case in range(1, T + 1):
             if k+1 < 4:
                 k+= 1
                 k_index = dir_R[k]
-            elif k + 1 > 4:
+            elif k + 1 >= 4:
                 k = (k+1)%4
                 k_index= dir_R[k]
         ans = (loc[0] * loc[0]) + (loc[1] * loc[1])
+        print(k_index)
+        print(k)
         MAXans.append(ans)
         if len(q) == 0:
+            print(loc)
             q += s
-            if MAXofTurn == max(MAXans):
+            if MAXofTurn >= max(MAXans):
+                cnt += 1
                 break
             elif MAXofTurn < max(MAXans) and cnt <5:
                 MAXofTurn = max(MAXans)
@@ -66,8 +68,7 @@ for test_case in range(1, T + 1):
             elif cnt >=5:
                 MAXofTurn = 'oo'
                 break
-            else:
-                break
+
 
 
     print("#{} {}".format(test_case, MAXofTurn))

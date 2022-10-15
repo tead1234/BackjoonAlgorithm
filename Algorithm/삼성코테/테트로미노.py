@@ -192,9 +192,9 @@ def space_bar(x, y, k):
             MAX += G[spc_x][spc_y]
         MAXLIST.append(MAX)
         MAX = 0
-        flg = False
         test = []
     else:
+        flg = False
         test = []
 
     # 시계방향 90 회전하기
@@ -228,10 +228,10 @@ def space_bar(x, y, k):
                 MAX += G[spc_x][spc_y]
             MAXLIST.append(MAX)
             MAX = 0
-            flg = False
             test = []
         else:
             test = []
+            flg = False
             continue
     # 상하 이동
 
@@ -266,9 +266,9 @@ def space_bar(x, y, k):
             MAX += G[spc_x][spc_y]
         MAXLIST.append(MAX)
         MAX = 0
-        flg = False
         test = []
     else:
+        flg = False
         test = []
     for _ in range(4):
         # space 제일 앞이 꼭지점이고
@@ -300,12 +300,12 @@ def space_bar(x, y, k):
                 MAX += G[spc_x][spc_y]
             MAXLIST.append(MAX)
             MAX = 0
-            flg = False
             test = []
         else:
+            flg = False
             test = []
     if len(MAXLIST) != 0:
-        ans = 0
+
         ans =max(MAXLIST)
 
     else:
