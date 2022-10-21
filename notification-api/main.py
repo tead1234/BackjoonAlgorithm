@@ -1,23 +1,28 @@
-from typing import Union
+from dataclasses import asdict
+from typing import Optional
 
+import uvicorn
 from fastapi import FastAPI
-from pydantic import BaseModel
-app = FastAPI()
-
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool,None] = None
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+from app.database.conn import db
+from app.common.config import conf
+from app.routes import index, auth
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+def create_app():
 
-@app.put("/items/{item_id}")
-def update_item(item_id:int, item:Item):
-    return {"item_name": item.name, "item_id": item_id}
+    c = conf()
+    app = FastAPI()
+    conf_dict = asdict(c)
+    db.init_app(app, **conf_dict)
+    # 데이터 베이스 이니셜라이즈
+
+    # 레디스 이니셜라이즈
+
+    # 미들웨어 정의
+
+    # 라우터 정의
+    app.include_router(index.router)
+    return app
+
+if __name__ = "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
