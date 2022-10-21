@@ -16,7 +16,7 @@ def solution(s):
                 if len(stack) == 0:
                     return False
                 last = stack.pop()
-                elif s == ')' and last == "(":
+                if s == ')' and last == "(":
                     continue
                 elif s == ']' and last == "[":
                     continue
