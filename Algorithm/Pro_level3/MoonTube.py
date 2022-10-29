@@ -13,7 +13,7 @@ ANSWER = []
 
 ## 스타트부터 모든 점들과의 유사도를 다 알 수 있어야 하네
 
-def dfs(start, end, path):
+def dfs(start, end, path,vis):
     global ans
     if start == end:
         ans = sorted(path)[0]
@@ -21,27 +21,28 @@ def dfs(start, end, path):
     else:
         for k in range(len(G[start])):
             c1, d = G[start][k]
+
             if vis[d]:
                 continue
-            vis[d] = True
-            path.append(c1)
-            dfs(d, end, path)
-            path.pop()
-            vis[d] = False
-# dfs(0,0,path)
-# print(ans)
+            else:
+                vis[d] = True
+                path.append(c1)
+                dfs(d, end, path,vis)
+                path.pop()
+                vis[d] = False
+
 
 for i in range(N):
     for j in range(N):
         vis[i] = True
         if i == j:
             continue
-        dfs(i, j, path)
+        dfs(i, j, path,vis)
+        # print(vis)
         path = []
         vis = [False] * N
         ansList.append(ans)
         ans = 0
-    ansList.sort()
     ANSWER.append(ansList)
     ansList = []
 for _ in range(Q):
@@ -51,3 +52,38 @@ for _ in range(Q):
         if val >= k:
             an += 1
     print(an)
+
+## bfs 가지치기 >>
+import sys
+from collections import deque
+
+N, Q = map(int, sys.stdin.readline().split())
+
+# make weighted graph
+G = {n: deque() for n in range(1, N + 1)}
+for _ in range(N - 1):
+    p, q, v = map(int, sys.stdin.readline().split())
+    G[p].append((q, v))
+    G[q].append((p, v))
+
+for _ in range(Q):
+    ki, vi = map(int, sys.stdin.readline().split())
+    visited, queue, ans = [0] * (N + 1), deque(), 0
+
+    # BFS
+    visited[vi] = 1
+    for v, k in G[vi]:
+        visited[v] = 1
+        queue.append((v, k))
+
+    while queue:
+        v, k = queue.popleft()
+
+        if k >= ki:
+            ans += 1
+            for nv, nk in G[v]:
+                if not visited[nv]:
+                    visited[nv] = 1
+                    queue.append((nv, min(k, nk)))
+
+    print(ans)
