@@ -18,8 +18,8 @@ def compare(A,B):
             dic_B[b] = 1
         else:
             dic_B[b] += 1
-    a = [i for i in dic_A.keys() for x in dic_B.keys() if i not in dic_B.keys()]
-    b = [i for i in dic_B.keys() for x in dic_A.keys() if i not in dic_A.keys()]
+    a = [i for i in dic_A.keys() if i not in dic_B.keys()]
+    b = [i for i in dic_B.keys() if i not in dic_A.keys()]
     if len(a) == len(b) == 1:
         if dic_A[a[0]] == dic_B[b[0]]:
             return True
@@ -43,17 +43,25 @@ def insert(A,B):
             dic_B[b] = 1
         else:
             dic_B[b] += 1
-    a = [i for i in dic_A.keys() for x in dic_B.keys() if i not in dic_B.keys()]
-    b = [i for i in dic_B.keys() for x in dic_A.keys() if i not in dic_A.keys()]
+    a = [i for i in dic_A.keys() if i not in dic_B.keys()]
+    b = [i for i in dic_B.keys() if i not in dic_A.keys()]
+    ## sanekey byt val different
     if len(a) == len(b) == 0:
-        a_items = list(dic_A.items())
-        b_items= list(dic_B.items())
-        for i in range(len(dic_A.items())):
-            if a_items[i] != b_items[i]:
+        for i in range(len(dic_A.values())):
+            if list(dic_A.values())[i] != list(dic_B.values())[i]:
                 cnt += 1
-            if cnt > 1:
+            if cnt >1:
                 return False
+
         return True
+
+    elif (len(a) == 1 and len(b) == 0) or (len(a)== 0 and len(b) == 1):
+        if len(a) == 1:
+            if dic_A[a[0]] ==1:
+                return True
+        elif len(b) == 1:
+            if dic_B[b[0]] == 1:
+                return True
     return False
 
 # 각 단어 뻉호가
@@ -66,10 +74,10 @@ for WORD in LIST:
             ans += 1
 
     elif abs(len(WORD) - len(KEY)) == 1:
-        WORD.sort()
-        KEY.sort()
+
         if insert(WORD,KEY):
             print(WORD)
+
             ans += 1
 
 print(ans)
