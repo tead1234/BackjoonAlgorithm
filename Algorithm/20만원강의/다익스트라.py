@@ -14,7 +14,7 @@ for _ in range(m):
     List[a].append((c, b))
     List[b].append((c, a))
 
-
+애미 뒤진
 
 def bfs(x):
     q.append((0, 1))
