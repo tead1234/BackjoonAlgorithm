@@ -1,5 +1,5 @@
 from collections import deque
-
+import heapq
 N, M = map(int, input().split())
 G = [list(input()) for _ in range(N)]
 k = int(input())
@@ -8,10 +8,11 @@ left = True
 right = False
 
 
-def bfs(i, j):
+def bfs(i, j, visited):
     q = deque()
     q.append((i, j))
     vis = [(i, j)]
+    visited[i][j] = 1
     while q:
         a, b = q.popleft()
         dir = [(-1, 0), (0, -1), (1, 0), (0, 1)]
@@ -19,30 +20,30 @@ def bfs(i, j):
             c = a + dir[k][0]
             d = b + dir[k][1]
             if N > c >= 0 and M > d >= 0:
-                if (c, d) not in vis and G[c][d] == 'x':
+                if visited[c][d] != 1 and G[c][d] == 'x':
+                    visited[c][d] = 1
                     q.append((c, d))
-                    vis.append((c,d))
-    ## 땅바닥에 닿은게 있는지 없는지 조사하고
-    # 닿았다면 pass 아니면 떨구기
+                    # vis.append((c,d))
+                    heapq.heappush(vis, (-c,d))
+
     flg = False
     while flg == False:
+        vis_2 = []
+
+        flg2 = False
+        if vis[0][0]  == -(N-1):
+            break
         for vi in vis:
             v_x, v_y = vi
-            if v_x == N - 1:
+            v_x = v_x * -1
+            if G[v_x+1][v_y] == 'x':
                 flg = True
                 break
-        if flg:
-            break
-        vis_2 = []
-        flg2 = False
-        for vi in vis:
-            v_x, v_y = vi
-
             G[v_x][v_y] = '.'
             G[v_x+1][v_y] = 'x'
             vis_2.append((v_x + 1, v_y))
         vis = vis_2
-    return vis
+
 
 
     # 중력으로 떨구기
@@ -67,12 +68,11 @@ for i in range(k):
         right = False
     ## 클러스터 구하기
     ## g를 탐색해서 x면 bfs를 돌려서 구하고 아래로 떨구기
-    vis = []
+    vis = [[0] * M for _ in range(N)]
     for I in range(N):
         for J in range(M):
-            if G[I][J] == 'x' and (I,J) not in vis:
-                vis +=bfs(I, J)
-                print(vis)
+            if G[I][J] == 'x' and vis[I][J] != 1:
+                bfs(I, J, vis)
 
 for g in G:
-    print(g)
+    print("".join(g))
