@@ -7,7 +7,7 @@ destroy = list(map(int, input().split()))
 left = True
 right = False
 
-
+## 구민시발
 def bfs(i, j, visited):
     q = deque()
     q.append((i, j))
