@@ -60,7 +60,7 @@ def check(board):
         cnt_x += 1
     return cnt_o, cnt_x
 
-
+,l
 def solution(board):
     ## 정상적으로 규칙을 지켰을때 나올수 있는 게임판은
     ## o의 갯수가 x 보다 1크거나같고
