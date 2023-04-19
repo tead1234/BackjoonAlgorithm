@@ -21,6 +21,11 @@ dic.set('7', '칠');
 dic.set('8', '팔');
 dic.set('9', '구');
 
+let dic2 = ['천', '백', '십', ""];
+
+let dic3 = ['조','억','만', ""];
+dic3.reverse();
+
 // 10000000
 // [0,4] [4,8]
 // console.log(dic.get(1));
@@ -44,13 +49,30 @@ for(let tes of test){
             re3.push(re2.slice(0,i));
         }else
         re3.push(re2.slice(i-4,i));
-    }
-    for(let re of re3){
-        if(re[0] !== '1'){
-            cnt ++;
-        }
     };
-    console.log(cnt + cnt2 + re3.length);
+    var answer = [];
+    for(let i =0 ; i < re3.length; i ++) {
+        let part = re3[i];
+        let sub = '';
+        for(let j = 0; j < part.length; j ++ ){
+            let partOfdic2 = dic2.slice(4 - part.length, 4);
+            if(j == 0 && part[j]== '1'){
+                sub += partOfdic2[j];
+                continue;
+            }else{
+                
+                // j값을 각 단위
+                // part[j]는 수의 이름
+                sub += dic.get(part[j]);
+                sub += partOfdic2[j];
+            }
+        }
+        sub += dic3[i];
+        answer.unshift(sub);
+        
+    }
+    // re3.reverse();
+    console.log(answer);
 }
 // 어절의 수는 re3.length이고 글자수만 따로 계산하면될듯?
 // 글자수 = 원래 길이 + ㅇ앞자리가 1이 아닌 것의 갯수 + 원 + 만 + 조 등등
