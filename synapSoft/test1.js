@@ -1,9 +1,10 @@
-const fs = require('fs');const readline = require('readline');
+const fs = require('fs');
+const readline = require('readline');
 
 var test = [];
 var total = 0;
 const readInterface = readline.createInterface({
-  input: fs.createReadStream('synapSoft/test.txt'),
+  input: fs.createReadStream('./test.txt'),
   console: false
 });
 
@@ -29,6 +30,7 @@ dic.set('9', '구');
 let dic2 = ['천', '백', '십', ""];
 
 let dic3 = ["", '만','억','조'];
+
 // dic3.reverse();
 for(let tes of test){
     let ans = 0;
