@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/2021-1-OSSPC-MUYAHO-3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/2021-1-OSSPC-WelcomeOS-1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/2021-2-OSSP-test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Auto_Sorting" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OSD_game" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/notification-api" vcs="Git" />
   </component>
 </project>
