@@ -42,7 +42,7 @@ def dfs(n, end, rate):
                 if rate < matrix[n][i]:
                     rate = matrix[n][i]
                 dfs(i, end, rate)
-                checked[n][i] = 0
+                checked[n][i] = 0ㅇ
 
     return
 
