@@ -12,7 +12,7 @@ def solution(plans):
         time_str2 = plans[i+1][1]
         time1 = datetime.strptime(time_str1, %H:%M")
         time2 = datetime.strptime(time_str2, %H:%M")
-        if time1 + timedelta(minutes = int(plans[i][2])) < time2:
+        if time1 + timedelta(minutes = int(plans[i][2])) <= time2:
             answer.append(plans[i][0])
             flg = time1 + timedelta(minutes = int(plans[i][2]))
         else:
