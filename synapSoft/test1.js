@@ -94,7 +94,7 @@ for(let tes of test){
     }
     // 잘번역되는거 확인했으니 이걸 각 숫자로 바꾸기 ㅇㅇ
     // 어절은 배열의 length 글자수는 배열의 각 숫자의 길이들의 합 + 1
-    // 잊지 않겠다
+    // 잊지 않겠다dqwd
     //sad
     let sum = 0;
     for(let a of answer){
