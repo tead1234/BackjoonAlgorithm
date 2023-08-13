@@ -96,6 +96,7 @@ for(let tes of test){
     // 어절은 배열의 length 글자수는 배열의 각 숫자의 길이들의 합 + 1
     // 잊지 않겠다dqwd
     //sad
+    //oojoip
     let sum = 0;
     for(let a of answer){
         sum += a.length;
